@@ -1,0 +1,63 @@
+name: medguard
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.6
+  get: 4.6.6
+  flutter: 
+    sdk: flutter
+  http: ^1.2.1
+  flutter_responsive_helper: ^1.0.2
+  firebase_storage: ^11.5.6
+  get_storage: ^2.1.1
+  auto_size_text: ^3.0.0
+  flutter_easyloading: ^3.0.5
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  cloud_firestore: ^4.13.6
+  crypto: ^3.0.3
+  firebase_crashlytics: ^3.4.9
+  flutter_svg: ^2.0.9
+
+dev_dependencies: 
+  flutter_lints: 4.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/fonts/
+    - assets/svgs/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+    - family: Poppins
+      fonts:
+          - asset: assets/fonts/Poppins-Regular.ttf
+            weight: 400
+          - asset: assets/fonts/Poppins-Light.ttf
+            weight: 300
+          - asset: assets/fonts/Poppins-Medium.ttf
+            weight: 500
+          - asset: assets/fonts/Poppins-SemiBold.ttf
+            weight: 600
+          - asset: assets/fonts/Poppins-Bold.ttf
+            weight: 700
