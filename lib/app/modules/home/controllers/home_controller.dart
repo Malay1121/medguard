@@ -1,9 +1,27 @@
 import 'package:get/get.dart';
+import 'package:medguard/app/helper/all_imports.dart';
 
-class HomeController extends GetxController {
+class HomeController extends CommonController {
   //TODO: Implement HomeController
 
-  final count = 0.obs;
+  List<Map> tools = [
+    {
+      "title": AppStrings.symptoms,
+      "image": AppImages.symptomsTab,
+      "page": Routes.HOME,
+    },
+    {
+      "title": AppStrings.medicineReminder,
+      "image": AppImages.medicationReminderTab,
+      "page": Routes.HOME,
+    },
+    {
+      "title": AppStrings.doctorAppointmentReminder,
+      "image": AppImages.appointmentReminderTab,
+      "page": Routes.HOME,
+    },
+  ];
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +36,4 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

@@ -7,12 +7,21 @@ class AppImages {
   static String onboard2 = '${imagesDirectory}onboard2.png';
   static String onboard3 = '${imagesDirectory}onboard3.png';
   static String logo = '${imagesDirectory}logo.png';
+  static String appointmentReminderTab =
+      '${imagesDirectory}appointment_reminder_tab.png';
+  static String medicationReminderTab =
+      '${imagesDirectory}medication_reminder_tab.png';
+  static String symptomsTab = '${imagesDirectory}symptoms_tab.png';
 }
 
 class AppIcons {
   static String user = '${svgsDirectory}user.svg';
   static String email = '${svgsDirectory}email.svg';
   static String lock = '${svgsDirectory}lock.svg';
+  static String appointmentReminder =
+      '${svgsDirectory}appointment_reminder.svg';
+  static String medicationReminder = '${svgsDirectory}medication_reminder.svg';
+  static String symptoms = '${svgsDirectory}symptoms.svg';
 }
 
 class AppStrings {
@@ -39,4 +48,9 @@ class AppStrings {
   static String dontHaveAnAccountYet = 'Don’t have an account yet?';
   static String signUp = 'Sign up';
   static String hopeYoureDoingFine = 'Hope you’re doing fine.';
+  static String categories = "Categories";
+  static String seeAll = "See All";
+  static String symptoms = "Symptoms";
+  static String medicineReminder = "Medicine Reminder";
+  static String doctorAppointmentReminder = "Doctor Appointment Reminder";
 }
