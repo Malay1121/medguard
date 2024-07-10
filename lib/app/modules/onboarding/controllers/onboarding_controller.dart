@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:medguard/app/helper/all_imports.dart';
 
-class OnboardingController extends GetxController {
+class OnboardingController extends CommonController {
   //TODO: Implement OnboardingController
   int currentPage = 0;
   List<Map> pages = [
@@ -25,6 +25,8 @@ class OnboardingController extends GetxController {
   void nextPage() {
     if (currentPage < pages.length - 1) {
       changePage(currentPage + 1);
+    } else {
+      Get.toNamed(Routes.SIGNUP);
     }
   }
 

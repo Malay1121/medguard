@@ -59,6 +59,7 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                   CommonButton(
                     text: AppStrings.next,
+                    width: 311,
                     onTap: () => controller.nextPage(),
                   ),
                   SizedBox(
@@ -96,14 +97,17 @@ class OnboardingView extends GetView<OnboardingController> {
                   SizedBox(
                     height: 25.h(context),
                   ),
-                  AppText(
-                    text: AppStrings.skip,
-                    height: 21.h(context),
-                    textAlign: TextAlign.center,
-                    centered: true,
-                    style: bodySRegular(
-                      context: context,
-                      color: AppColors.grey500,
+                  GestureDetector(
+                    onTap: () => Get.toNamed(Routes.SIGNUP),
+                    child: AppText(
+                      text: AppStrings.skip,
+                      height: 21.h(context),
+                      textAlign: TextAlign.center,
+                      centered: true,
+                      style: bodySRegular(
+                        context: context,
+                        color: AppColors.grey500,
+                      ),
                     ),
                   ),
                 ],

@@ -5,12 +5,12 @@ class CommonButton extends StatefulWidget {
       {super.key,
       required this.text,
       required this.onTap,
-      this.height,
-      this.width});
+      this.height = 48,
+      this.width = 342});
   String text;
   VoidCallback onTap;
-  double? height;
-  double? width;
+  double height;
+  double width;
   @override
   State<CommonButton> createState() => _CommonButtonState();
 }
@@ -21,8 +21,8 @@ class _CommonButtonState extends State<CommonButton> {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-        height: 48.h(context),
-        width: 311.w(context),
+        height: widget.height.h(context),
+        width: widget.width.w(context),
         decoration: BoxDecoration(
           color: AppColors.midnightBlue,
           borderRadius: BorderRadius.circular(61),
