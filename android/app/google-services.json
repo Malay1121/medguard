@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666379745133",
+    "project_id": "medguard-app",
+    "storage_bucket": "medguard-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666379745133:android:092da0d53e1c685f128c64",
+        "android_client_info": {
+          "package_name": "com.malay.medguard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS9AReAwz9pMcmAwC-XRM4qwYZP4L_6ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

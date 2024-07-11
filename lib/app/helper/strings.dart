@@ -25,6 +25,12 @@ class AppIcons {
 }
 
 class AppStrings {
+  static String emailValidation = "Please enter a valid email";
+  static String nameValidation = "Please enter a valid name";
+  static String passwordValidation = "Please enter a valid password";
+  static String passwordErrorMessage =
+      "Minimum 8 characters, at least 1 lower case, at least 1 upper case, at least 1 digit";
+
   static String next = "Next";
   static String skip = "Skip";
   static String symptomTracker = 'Symptom Tracker';
@@ -36,6 +42,7 @@ class AppStrings {
   static String healthTips = 'Health Tips and Resources';
   static String healthTipsDesc =
       "Offers personalized health tips and advice based on user's identified risks";
+
   static String createAccount = 'Create Account';
   static String weAreHereToHelpYou = 'We are here to help you!';
   static String yourName = 'Your Name';
@@ -48,6 +55,7 @@ class AppStrings {
   static String dontHaveAnAccountYet = 'Don’t have an account yet?';
   static String signUp = 'Sign up';
   static String hopeYoureDoingFine = 'Hope you’re doing fine.';
+
   static String categories = "Categories";
   static String seeAll = "See All";
   static String symptoms = "Symptoms";

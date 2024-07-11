@@ -1,4 +1,4 @@
-package com.malay.medguard.medguard
+package com.malay.medguard
 
 import io.flutter.embedding.android.FlutterActivity
 

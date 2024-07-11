@@ -126,7 +126,7 @@ class SignupView extends GetView<SignupController> {
                       text: controller.signup
                           ? AppStrings.createAccount
                           : AppStrings.signIn,
-                      onTap: () => Get.toNamed(Routes.HOME),
+                      onTap: () => controller.submit(),
                     ),
                     SizedBox(
                       height: 24.h(context),

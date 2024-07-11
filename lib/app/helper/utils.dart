@@ -10,11 +10,46 @@ String generateFromMd5(String input) {
   return md5.convert(utf8.encode(input)).toString();
 }
 
+bool validateEmail(String email) {
+  return RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+      .hasMatch(email);
+}
+
+bool validatePassword(String password) {
+  return RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
+      .hasMatch(password);
+}
+
 bool isEmptyString(String? string) {
   if (string == null || string.isEmpty) {
     return true;
   }
   return false;
+}
+
+void writeUserDetails(Map<String, dynamic> data) {
+  getStorage.write("userDetails", data);
+}
+
+Map<String, dynamic>? readUserDetails() {
+  return getStorage.read("userDetails");
+}
+
+void editUserDetails(Map<String, dynamic> data) {
+  Map userDetails = getStorage.read("userDetails");
+  for (var key in data.keys) {
+    if (userDetails[key] == null) {
+      userDetails.addEntries({key: data[key]}.entries);
+    } else {
+      userDetails[key] = data[key];
+    }
+  }
+  getStorage.write("userDetails", data);
+}
+
+void showFirebaseError(error) {
+  showSnackbar(message: error);
 }
 
 String getMessageFromErrorCode(e) {
