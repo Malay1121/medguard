@@ -47,7 +47,27 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       for (Map tool in controller.tools)
                         InkWell(
-                          onTap: () => Get.toNamed(tool["page"]),
+                          // onTap: () => Get.toNamed(tool["page"]),
+                          onTap: () async {
+                            const AndroidNotificationDetails
+                                androidNotificationDetails =
+                                AndroidNotificationDetails(
+                                    'repeating channel id',
+                                    'repeating channel name',
+                                    channelDescription:
+                                        'repeating description');
+                            const NotificationDetails notificationDetails =
+                                NotificationDetails(
+                                    android: androidNotificationDetails);
+                            await flutterLocalNotificationsPlugin
+                                .periodicallyShow(
+                                    0,
+                                    'repeating title',
+                                    'repeating body',
+                                    RepeatInterval.everyMinute,
+                                    notificationDetails,
+                                    androidAllowWhileIdle: true);
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
