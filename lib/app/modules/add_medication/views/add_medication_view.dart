@@ -253,45 +253,48 @@ class AddMedicationView extends GetView<AddMedicationController> {
                       height: 10.h(context),
                     ),
                     for (var time in controller.timings)
-                      Container(
-                        width: 342.w(context),
-                        decoration: BoxDecoration(
-                          color: AppColors.grey50,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10.h(context),
-                            horizontal: 10.w(context),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.h(context)),
+                        child: Container(
+                          width: 342.w(context),
+                          decoration: BoxDecoration(
+                            color: AppColors.grey50,
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Spacer(),
-                              Center(
-                                child: AppText(
-                                  text: formatTime(time),
-                                  centered: true,
-                                  height: 21.h(context),
-                                  style: bodySSemiBold(
-                                    context: context,
-                                    color: AppColors.grey500,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10.h(context),
+                              horizontal: 10.w(context),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Spacer(),
+                                Center(
+                                  child: AppText(
+                                    text: formatTime(time),
+                                    centered: true,
+                                    height: 21.h(context),
+                                    style: bodySSemiBold(
+                                      context: context,
+                                      color: AppColors.grey500,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Spacer(),
-                              GestureDetector(
-                                onTap: () {
-                                  controller.timings.remove(time);
-                                  controller.update();
-                                },
-                                child: Icon(
-                                  Icons.delete_outline,
-                                  color: AppColors.darkRed,
-                                  size: 24.t(context),
+                                Spacer(),
+                                GestureDetector(
+                                  onTap: () {
+                                    controller.timings.remove(time);
+                                    controller.update();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: AppColors.darkRed,
+                                    size: 24.t(context),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -310,7 +313,7 @@ class AddMedicationView extends GetView<AddMedicationController> {
                     CommonButton(
                       text: AppStrings.createAccount,
                       width: 342.w(context),
-                      onTap: () {},
+                      onTap: () => controller.getDates(),
                     ),
                   ],
                 ),

@@ -85,24 +85,43 @@ class AddMedicationController extends CommonController {
     );
   }
 
-  void setReminders() async {
+  void getDates() {
+    int days = endDate.difference(startDate).inDays;
+    for (int day = 0; day <= days; day++) {
+      DateTime date = startDate.add(const Duration(days: 1));
+
+      if (selectedDays.contains(weekDays[date.weekday])) {
+        for (Time time in timings) {
+          date =
+              DateTime(date.year, date.month, date.day, time.hour, time.minute);
+          setReminder(date);
+        }
+      }
+      ;
+    }
+  }
+
+  void setReminder(DateTime date) async {
     tz.initializeTimeZones();
 
     final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(currentTimeZone));
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
+        date.year * 10000 +
+            date.month * 1000 +
+            date.day * 100 +
+            date.hour * 10 +
+            date.minute,
         medicineNameController.text,
         descriptionController.text,
         tz.TZDateTime.fromMillisecondsSinceEpoch(
-                tz.local, startDate.millisecondsSinceEpoch)
-            .add(const Duration(seconds: 5)),
+            tz.local, date.millisecondsSinceEpoch),
         const NotificationDetails(
             android: AndroidNotificationDetails(
-          'your channel id',
-          'your channel name',
-          channelDescription: 'your channel description',
+          'medguard_medication',
+          'Medication Reminder',
+          channelDescription: 'Get reminders for taking medications',
           priority: Priority.high,
           enableVibration: true,
           importance: Importance.high,
