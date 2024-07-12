@@ -35,6 +35,9 @@ class AppStrings {
   static String activateSOS = "Do you want to call the emergency service?";
   static String getHelp = "Get Help!";
   static String close = "Close";
+  static String confirm = "Confirm";
+
+  static String selectSymptoms = "Select Symptoms";
 
   static String next = "Next";
   static String skip = "Skip";

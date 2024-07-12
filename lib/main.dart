@@ -37,6 +37,7 @@ final InitializationSettings initializationSettings = InitializationSettings(
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  await AndroidAlarmManager.initialize();
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);
@@ -57,5 +58,5 @@ void main() async {
       getPages: AppPages.routes,
     ),
   );
-  BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
+  // BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 }

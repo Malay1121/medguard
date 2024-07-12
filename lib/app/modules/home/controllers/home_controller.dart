@@ -1,6 +1,7 @@
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import 'package:medguard/app/helper/all_imports.dart';
-import 'package:shake_detector/shake_detector.dart';
+import 'package:shake/shake.dart';
 
 class HomeController extends CommonController {
   //TODO: Implement HomeController
@@ -26,9 +27,10 @@ class HomeController extends CommonController {
   @override
   void onInit() {
     super.onInit();
-    ShakeDetector detector = ShakeDetector.autoStart(onShake: () {
+    ShakeDetector detector = ShakeDetector.autoStart(onPhoneShake: () {
       showHelpDialog(Get.context!);
     });
+    detector.startListening();
   }
 
   @override

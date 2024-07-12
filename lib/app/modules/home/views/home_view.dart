@@ -49,25 +49,31 @@ class HomeView extends GetView<HomeController> {
                         InkWell(
                           // onTap: () => Get.toNamed(tool["page"]),
                           onTap: () async {
-                            print(readUserDetails());
-                            const AndroidNotificationDetails
-                                androidNotificationDetails =
-                                AndroidNotificationDetails(
-                                    'repeating channel id',
-                                    'repeating channel name',
-                                    channelDescription:
-                                        'repeating description');
-                            const NotificationDetails notificationDetails =
-                                NotificationDetails(
-                                    android: androidNotificationDetails);
-                            await flutterLocalNotificationsPlugin
-                                .periodicallyShow(
-                                    0,
-                                    'repeating title',
-                                    'repeating body',
-                                    RepeatInterval.everyMinute,
-                                    notificationDetails,
-                                    androidAllowWhileIdle: true);
+                            Get.toNamed(Routes.SELECT_SYMPTOMS);
+                            // final int helloAlarmID = 0;
+                            // await AndroidAlarmManager.oneShot(
+                            //     const Duration(minutes: 1),
+                            //     helloAlarmID,
+                            //     printHello);
+                            // print(readUserDetails());
+                            // const AndroidNotificationDetails
+                            //     androidNotificationDetails =
+                            //     AndroidNotificationDetails(
+                            //         'repeating channel id',
+                            //         'repeating channel name',
+                            //         channelDescription:
+                            //             'repeating description');
+                            // const NotificationDetails notificationDetails =
+                            //     NotificationDetails(
+                            //         android: androidNotificationDetails);
+                            // await flutterLocalNotificationsPlugin
+                            //     .periodicallyShow(
+                            //         0,
+                            //         'repeating title',
+                            //         'repeating body',
+                            //         RepeatInterval.everyMinute,
+                            //         notificationDetails,
+                            //         androidAllowWhileIdle: true);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

@@ -71,79 +71,79 @@ class SignupController extends CommonController {
     return true;
   }
 
-  bool _enabled = true;
-  int _status = 0;
-  List<DateTime> _events = [];
-
-  Future<void> initPlatformState() async {
-    // Configure BackgroundFetch.
-    int status = await BackgroundFetch.configure(
-        BackgroundFetchConfig(
-            minimumFetchInterval: 1,
-            stopOnTerminate: false,
-            enableHeadless: true,
-            requiresBatteryNotLow: false,
-            requiresCharging: false,
-            requiresStorageNotLow: false,
-            requiresDeviceIdle: false,
-            requiredNetworkType: NetworkType.NONE), (String taskId) async {
-      // <-- Event handler
-      // This is the fetch-event callback.
-      print("[BackgroundFetch] Event received $taskId");
-      const AndroidNotificationDetails androidNotificationDetails =
-          AndroidNotificationDetails('your channel id', 'your channel name',
-              channelDescription: 'your channel description',
-              importance: Importance.max,
-              priority: Priority.high,
-              ticker: 'ticker');
-      const NotificationDetails notificationDetails =
-          NotificationDetails(android: androidNotificationDetails);
-      await flutterLocalNotificationsPlugin.show(
-          0, 'plain title', 'plain body', notificationDetails,
-          payload: 'item x');
-
-      update();
-      // IMPORTANT:  You must signal completion of your task or the OS can punish your app
-      // for taking too long in the background.
-      BackgroundFetch.finish(taskId);
-    }, (String taskId) async {
-      // <-- Task timeout handler.
-      // This task has exceeded its allowed running-time.  You must stop what you're doing and immediately .finish(taskId)
-      print("[BackgroundFetch] TASK TIMEOUT taskId: $taskId");
-      BackgroundFetch.finish(taskId);
-    });
-    print('[BackgroundFetch] configure success: $status');
-    _status = status;
-    update();
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!isClosed) return;
-  }
-
-  void _onClickEnable(enabled) {
-    _enabled = enabled;
-    update();
-    if (enabled) {
-      BackgroundFetch.start().then((int status) {
-        print('[BackgroundFetch] start success: $status');
-      }).catchError((e) {
-        print('[BackgroundFetch] start FAILURE: $e');
-      });
-    } else {
-      BackgroundFetch.stop().then((int status) {
-        print('[BackgroundFetch] stop success: $status');
-      });
-    }
-  }
-
-  void _onClickStatus() async {
-    int status = await BackgroundFetch.status;
-    print('[BackgroundFetch] status: $status');
-    _status = status;
-    update();
-  }
+  // bool _enabled = true;
+  // int _status = 0;
+  // List<DateTime> _events = [];
+  //
+  // Future<void> initPlatformState() async {
+  //   // Configure BackgroundFetch.
+  //   int status = await BackgroundFetch.configure(
+  //       BackgroundFetchConfig(
+  //           minimumFetchInterval: 1,
+  //           stopOnTerminate: false,
+  //           enableHeadless: true,
+  //           requiresBatteryNotLow: false,
+  //           requiresCharging: false,
+  //           requiresStorageNotLow: false,
+  //           requiresDeviceIdle: false,
+  //           requiredNetworkType: NetworkType.NONE), (String taskId) async {
+  //     // <-- Event handler
+  //     // This is the fetch-event callback.
+  //     print("[BackgroundFetch] Event received $taskId");
+  //     const AndroidNotificationDetails androidNotificationDetails =
+  //         AndroidNotificationDetails('your channel id', 'your channel name',
+  //             channelDescription: 'your channel description',
+  //             importance: Importance.max,
+  //             priority: Priority.high,
+  //             ticker: 'ticker');
+  //     const NotificationDetails notificationDetails =
+  //         NotificationDetails(android: androidNotificationDetails);
+  //     await flutterLocalNotificationsPlugin.show(
+  //         0, 'plain title', 'plain body', notificationDetails,
+  //         payload: 'item x');
+  //
+  //     update();
+  //     // IMPORTANT:  You must signal completion of your task or the OS can punish your app
+  //     // for taking too long in the background.
+  //     BackgroundFetch.finish(taskId);
+  //   }, (String taskId) async {
+  //     // <-- Task timeout handler.
+  //     // This task has exceeded its allowed running-time.  You must stop what you're doing and immediately .finish(taskId)
+  //     print("[BackgroundFetch] TASK TIMEOUT taskId: $taskId");
+  //     BackgroundFetch.finish(taskId);
+  //   });
+  //   print('[BackgroundFetch] configure success: $status');
+  //   _status = status;
+  //   update();
+  //
+  //   // If the widget was removed from the tree while the asynchronous platform
+  //   // message was in flight, we want to discard the reply rather than calling
+  //   // setState to update our non-existent appearance.
+  //   if (!isClosed) return;
+  // }
+  //
+  // void _onClickEnable(enabled) {
+  //   _enabled = enabled;
+  //   update();
+  //   if (enabled) {
+  //     BackgroundFetch.start().then((int status) {
+  //       print('[BackgroundFetch] start success: $status');
+  //     }).catchError((e) {
+  //       print('[BackgroundFetch] start FAILURE: $e');
+  //     });
+  //   } else {
+  //     BackgroundFetch.stop().then((int status) {
+  //       print('[BackgroundFetch] stop success: $status');
+  //     });
+  //   }
+  // }
+  //
+  // void _onClickStatus() async {
+  //   int status = await BackgroundFetch.status;
+  //   print('[BackgroundFetch] status: $status');
+  //   _status = status;
+  //   update();
+  // }
 
   @override
   void onInit() {
@@ -152,7 +152,7 @@ class SignupController extends CommonController {
       signup = Get.arguments["signup"];
       update();
     }
-    initPlatformState();
+    // initPlatformState();
   }
 
   @override

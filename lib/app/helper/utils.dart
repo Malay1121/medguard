@@ -131,10 +131,16 @@ void showHelpDialog(BuildContext context) {
               SizedBox(
                 height: 16.h(context),
               ),
-              AppText(
-                text: AppStrings.close,
-                textAlign: TextAlign.center,
-                style: bodySRegular(context: context, color: AppColors.grey500),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: AppText(
+                  text: AppStrings.close,
+                  textAlign: TextAlign.center,
+                  style:
+                      bodySRegular(context: context, color: AppColors.grey500),
+                ),
               ),
             ],
           ),
