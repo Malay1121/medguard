@@ -19,18 +19,18 @@ class DatabaseHelper {
     }
   }
 
-  static Future loginUser({required Map<String, dynamic> data}) async {
+  static Future? loginUser({required Map<String, dynamic> data}) async {
     try {
       UserCredential user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: data["email"], password: generateMd5(data["password"]));
       Map<String, dynamic>? userData = (await FirebaseFirestore.instance
               .collection("users")
-              .doc(data["uid"])
+              .doc(user.user!.uid)
               .get())
           .data();
       if (userData != null) writeUserDetails(userData);
-      return user.user;
+      return user;
     } on FirebaseException catch (error) {
       showFirebaseError(error.message);
     }

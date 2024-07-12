@@ -49,6 +49,7 @@ class HomeView extends GetView<HomeController> {
                         InkWell(
                           // onTap: () => Get.toNamed(tool["page"]),
                           onTap: () async {
+                            print(readUserDetails());
                             const AndroidNotificationDetails
                                 androidNotificationDetails =
                                 AndroidNotificationDetails(

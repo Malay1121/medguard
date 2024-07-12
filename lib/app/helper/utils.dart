@@ -29,7 +29,9 @@ bool isEmptyString(String? string) {
 }
 
 void writeUserDetails(Map<String, dynamic> data) {
+  print(data);
   getStorage.write("userDetails", data);
+  print(readUserDetails());
 }
 
 Map<String, dynamic>? readUserDetails() {

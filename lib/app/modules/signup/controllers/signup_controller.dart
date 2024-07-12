@@ -46,7 +46,8 @@ class SignupController extends CommonController {
         "email": emailController.text,
         "password": generateMd5(passwordController.text),
       };
-      User? result = await DatabaseHelper.loginUser(data: userDetails);
+      UserCredential? result =
+          await DatabaseHelper.loginUser(data: userDetails);
       if (result != null) {
         Get.offAllNamed(Routes.HOME);
       }

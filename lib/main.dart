@@ -1,6 +1,5 @@
 import 'package:background_fetch/background_fetch.dart';
 import 'package:medguard/app/helper/all_imports.dart';
-import 'package:shake/shake.dart';
 
 void onDidReceiveNotificationResponse(
     NotificationResponse notificationResponse) async {
