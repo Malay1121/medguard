@@ -38,6 +38,9 @@ class AppStrings {
   static String confirm = "Confirm";
 
   static String selectSymptoms = "Select Symptoms";
+  static String medicationReminder = "Medication Reminder";
+  static String today = "Today";
+  static String all = "All";
 
   static String next = "Next";
   static String skip = "Skip";

@@ -10,12 +10,12 @@ class HomeController extends CommonController {
     {
       "title": AppStrings.symptoms,
       "image": AppImages.symptomsTab,
-      "page": Routes.HOME,
+      "page": Routes.SELECT_SYMPTOMS,
     },
     {
       "title": AppStrings.medicineReminder,
       "image": AppImages.medicationReminderTab,
-      "page": Routes.HOME,
+      "page": Routes.MEDICINE_REMINDER,
     },
     {
       "title": AppStrings.doctorAppointmentReminder,

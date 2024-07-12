@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/medicine_reminder/bindings/medicine_reminder_binding.dart';
+import '../modules/medicine_reminder/views/medicine_reminder_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/select_symptoms/bindings/select_symptoms_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.SELECT_SYMPTOMS,
       page: () => const SelectSymptomsView(),
       binding: SelectSymptomsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MEDICINE_REMINDER,
+      page: () => const MedicineReminderView(),
+      binding: MedicineReminderBinding(),
     ),
   ];
 }

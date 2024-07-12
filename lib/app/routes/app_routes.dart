@@ -8,6 +8,7 @@ abstract class Routes {
   static const SIGNUP = _Paths.SIGNUP;
   static const SPLASH = _Paths.SPLASH;
   static const SELECT_SYMPTOMS = _Paths.SELECT_SYMPTOMS;
+  static const MEDICINE_REMINDER = _Paths.MEDICINE_REMINDER;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const SIGNUP = '/signup';
   static const SPLASH = '/splash';
   static const SELECT_SYMPTOMS = '/select-symptoms';
+  static const MEDICINE_REMINDER = '/medicine-reminder';
 }
