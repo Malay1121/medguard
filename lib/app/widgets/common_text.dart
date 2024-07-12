@@ -58,25 +58,30 @@ class _AppTextState extends State<AppText> {
       height: widget.height,
       child: widget.centered
           ? Center(
-              child: AutoSizeText(
-                widget.text,
-                style: widget.style,
-                strutStyle: widget.strutStyle,
-                minFontSize: widget.minFontSize,
-                maxFontSize: widget.maxFontSize = double.infinity,
-                stepGranularity: widget.stepGranularity = 1,
-                presetFontSizes: widget.presetFontSizes,
-                group: widget.group,
-                textAlign: widget.textAlign,
-                textDirection: widget.textDirection,
-                locale: widget.locale,
-                softWrap: widget.softWrap,
-                wrapWords: widget.wrapWords,
-                overflow: widget.overflow,
-                overflowReplacement: widget.overflowReplacement,
-                textScaleFactor: widget.textScaleFactor,
-                maxLines: widget.maxLines,
-                semanticsLabel: widget.semanticsLabel,
+              child: GestureDetector(
+                onLongPress: () async {
+                  await textToSpeech(widget.text);
+                },
+                child: AutoSizeText(
+                  widget.text,
+                  style: widget.style,
+                  strutStyle: widget.strutStyle,
+                  minFontSize: widget.minFontSize,
+                  maxFontSize: widget.maxFontSize = double.infinity,
+                  stepGranularity: widget.stepGranularity = 1,
+                  presetFontSizes: widget.presetFontSizes,
+                  group: widget.group,
+                  textAlign: widget.textAlign,
+                  textDirection: widget.textDirection,
+                  locale: widget.locale,
+                  softWrap: widget.softWrap,
+                  wrapWords: widget.wrapWords,
+                  overflow: widget.overflow,
+                  overflowReplacement: widget.overflowReplacement,
+                  textScaleFactor: widget.textScaleFactor,
+                  maxLines: widget.maxLines,
+                  semanticsLabel: widget.semanticsLabel,
+                ),
               ),
             )
           : AutoSizeText(

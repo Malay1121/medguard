@@ -31,6 +31,11 @@ class AppStrings {
   static String passwordErrorMessage =
       "Minimum 8 characters, at least 1 lower case, at least 1 upper case, at least 1 digit";
 
+  static String needHelp = "Need Help?";
+  static String activateSOS = "Do you want to call the emergency service?";
+  static String getHelp = "Get Help!";
+  static String close = "Close";
+
   static String next = "Next";
   static String skip = "Skip";
   static String symptomTracker = 'Symptom Tracker';

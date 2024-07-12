@@ -26,6 +26,7 @@ export 'package:get_storage/get_storage.dart';
 export 'package:crypto/crypto.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
+export 'package:flutter_tts/flutter_tts.dart';
 
 export 'package:medguard/app/widgets/common_text.dart';
 export 'package:medguard/app/widgets/common_button.dart';

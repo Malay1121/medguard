@@ -1,5 +1,6 @@
 import 'package:background_fetch/background_fetch.dart';
 import 'package:medguard/app/helper/all_imports.dart';
+import 'package:shake/shake.dart';
 
 void onDidReceiveNotificationResponse(
     NotificationResponse notificationResponse) async {
@@ -36,6 +37,7 @@ final InitializationSettings initializationSettings = InitializationSettings(
     linux: initializationSettingsLinux);
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
+
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);
   initializeSize(390, 844);

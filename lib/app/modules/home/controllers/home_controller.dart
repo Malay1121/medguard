@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:medguard/app/helper/all_imports.dart';
+import 'package:shake/shake.dart';
 
 class HomeController extends CommonController {
   //TODO: Implement HomeController
@@ -25,6 +26,10 @@ class HomeController extends CommonController {
   @override
   void onInit() {
     super.onInit();
+    ShakeDetector detector = ShakeDetector.waitForStart(onPhoneShake: () {
+      showHelpDialog(Get.context!);
+    });
+    detector.startListening();
   }
 
   @override

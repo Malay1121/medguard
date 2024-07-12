@@ -36,6 +36,20 @@ Map<String, dynamic>? readUserDetails() {
   return getStorage.read("userDetails");
 }
 
+Future textToSpeech(String text) async {
+  FlutterTts flutterTts = FlutterTts();
+  await flutterTts.setIosAudioCategory(
+      IosTextToSpeechAudioCategory.ambient,
+      [
+        IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+        IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+        IosTextToSpeechAudioCategoryOptions.mixWithOthers
+      ],
+      IosTextToSpeechAudioMode.voicePrompt);
+  await flutterTts.awaitSpeakCompletion(true);
+  await flutterTts.speak(text);
+}
+
 void editUserDetails(Map<String, dynamic> data) {
   Map userDetails = getStorage.read("userDetails");
   for (var key in data.keys) {
@@ -50,6 +64,82 @@ void editUserDetails(Map<String, dynamic> data) {
 
 void showFirebaseError(error) {
   showSnackbar(message: error);
+}
+
+void showHelpDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        child: Container(
+          width: 341.w(context),
+          height: 424.h(context),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(48),
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 32.h(context),
+              ),
+              Container(
+                width: 131.w(context),
+                height: 131.h(context),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.darkRed,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.priority_high,
+                    color: AppColors.white,
+                    size: 51.t(context),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 32.h(context),
+              ),
+              AppText(
+                text: AppStrings.needHelp,
+                textAlign: TextAlign.center,
+                style: h1(
+                  context: context,
+                  color: AppColors.midnightBlue,
+                ),
+              ),
+              SizedBox(
+                height: 8.h(context),
+              ),
+              AppText(
+                text: AppStrings.activateSOS,
+                textAlign: TextAlign.center,
+                width: 252.w(context),
+                style: bodySRegular(context: context, color: AppColors.grey500),
+              ),
+              SizedBox(
+                height: 32.h(context),
+              ),
+              CommonButton(
+                text: AppStrings.getHelp,
+                width: 245.w(context),
+                onTap: () {},
+              ),
+              SizedBox(
+                height: 16.h(context),
+              ),
+              AppText(
+                text: AppStrings.close,
+                textAlign: TextAlign.center,
+                style: bodySRegular(context: context, color: AppColors.grey500),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
 
 String getMessageFromErrorCode(e) {
