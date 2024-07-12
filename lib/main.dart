@@ -27,13 +27,10 @@ final DarwinInitializationSettings initializationSettingsDarwin =
         payload.toString());
   },
 );
-final LinuxInitializationSettings initializationSettingsLinux =
-    LinuxInitializationSettings(defaultActionName: 'Open notification');
 final InitializationSettings initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid,
-    iOS: initializationSettingsDarwin,
-    macOS: initializationSettingsDarwin,
-    linux: initializationSettingsLinux);
+  android: initializationSettingsAndroid,
+  iOS: initializationSettingsDarwin,
+);
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();

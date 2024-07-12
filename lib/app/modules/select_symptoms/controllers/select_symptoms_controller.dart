@@ -56,12 +56,15 @@ class SelectSymptomsController extends GetxController {
         .data();
     if (data != null) {
       symptoms = data;
+      print(data);
+      update();
     }
   }
 
   @override
   void onInit() {
     super.onInit();
+    getSymptoms();
   }
 
   @override

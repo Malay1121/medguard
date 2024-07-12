@@ -1,4 +1,3 @@
-import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:get/get.dart';
 
 class MedicineReminderController extends GetxController {

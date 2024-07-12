@@ -1,3 +1,6 @@
+import 'package:day_night_time_picker/lib/state/time.dart';
+import 'package:intl/intl.dart';
+
 import 'all_imports.dart';
 
 GetStorage getStorage = GetStorage();
@@ -66,6 +69,19 @@ void editUserDetails(Map<String, dynamic> data) {
 
 void showFirebaseError(error) {
   showSnackbar(message: error);
+}
+
+String formatDate(DateTime date) {
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+  return dateFormat.format(date);
+}
+
+String formatTime(Time time) {
+  if (time.hour >= 12) {
+    return "${time.hour - 12}:${time.minute} PM";
+  } else {
+    return "${time.hour}:${time.minute} AM";
+  }
 }
 
 void showHelpDialog(BuildContext context) {

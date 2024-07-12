@@ -6,11 +6,15 @@ class CommonButton extends StatefulWidget {
       required this.text,
       required this.onTap,
       this.height = 48,
-      this.width = 342});
+      this.width = 342,
+      this.backgroundColor,
+      this.textColor});
   String text;
   VoidCallback onTap;
   double height;
   double width;
+  Color? backgroundColor;
+  Color? textColor;
   @override
   State<CommonButton> createState() => _CommonButtonState();
 }
@@ -24,7 +28,7 @@ class _CommonButtonState extends State<CommonButton> {
         height: widget.height.h(context),
         width: widget.width.w(context),
         decoration: BoxDecoration(
-          color: AppColors.midnightBlue,
+          color: widget.backgroundColor ?? AppColors.midnightBlue,
           borderRadius: BorderRadius.circular(61),
         ),
         child: Center(
@@ -33,7 +37,7 @@ class _CommonButtonState extends State<CommonButton> {
             height: 24.h(context),
             centered: true,
             style: TextStyle(
-              color: AppColors.white,
+              color: widget.textColor ?? AppColors.white,
               fontFamily: inter,
               fontWeight: FontWeight.w500,
               fontSize: 16.t(context),

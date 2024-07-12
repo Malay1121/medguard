@@ -38,9 +38,11 @@ class AppStrings {
   static String confirm = "Confirm";
 
   static String selectSymptoms = "Select Symptoms";
+  static String addMedication = "Add Medication";
   static String medicationReminder = "Medication Reminder";
   static String today = "Today";
   static String all = "All";
+  static String weAreHereToRemindYou = "We are here to remind you!";
 
   static String next = "Next";
   static String skip = "Skip";
@@ -72,4 +74,12 @@ class AppStrings {
   static String symptoms = "Symptoms";
   static String medicineReminder = "Medicine Reminder";
   static String doctorAppointmentReminder = "Doctor Appointment Reminder";
+
+  static String medicineName = 'Medicine Name';
+  static String description = 'Description';
+  static String startDate = 'Start Date';
+  static String endDate = 'End Date';
+  static String whichDays = 'Which Days?';
+  static String whatTime = 'What Time?';
+  static String addTime = 'Add Time';
 }

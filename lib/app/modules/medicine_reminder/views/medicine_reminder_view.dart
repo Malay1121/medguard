@@ -27,7 +27,9 @@ class MedicineReminderView extends GetView<MedicineReminderController> {
                 color: AppColors.white,
               ),
               backgroundColor: AppColors.midnightBlue,
-              onPressed: () {},
+              onPressed: () async {
+                Get.toNamed(Routes.ADD_MEDICATION);
+              },
             ),
             body: SingleChildScrollView(
               physics: BouncingScrollPhysics(),

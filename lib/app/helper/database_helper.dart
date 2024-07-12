@@ -49,4 +49,34 @@ class DatabaseHelper {
       showFirebaseError(error.message);
     }
   }
+
+  static Future createMedication(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("medications")
+          .doc(data["id"])
+          .set(data);
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
+  static Future editMedication(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("medications")
+          .doc(data["id"])
+          .update(data);
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
 }
