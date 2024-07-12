@@ -36,6 +36,7 @@ final InitializationSettings initializationSettings = InitializationSettings(
     linux: initializationSettingsLinux);
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);

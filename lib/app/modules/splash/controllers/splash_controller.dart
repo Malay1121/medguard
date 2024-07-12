@@ -5,7 +5,7 @@ class SplashController extends CommonController {
   bool firstTime = true;
 
   void checkLogin() async {
-    Map<String, dynamic>? userData = readUserDetails();
+    var userData = readUserDetails();
     print(userData);
     if (userData != null && userData != {}) {
       var user = await DatabaseHelper.loginUser(data: userData);
@@ -30,6 +30,7 @@ class SplashController extends CommonController {
 
   @override
   void onReady() {
+    print("xD " + readUserDetails().toString());
     super.onReady();
   }
 
