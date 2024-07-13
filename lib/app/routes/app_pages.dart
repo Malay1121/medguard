@@ -16,6 +16,8 @@ import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/book_appointment/views/book_appointment_view.dart';
+import '../modules/book_appointment/controllers/book_appointment_controller.dart';
 
 part 'app_routes.dart';
 
@@ -25,6 +27,14 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
+    GetPage(
+      name: '/book-appointment',
+      page: () => BookAppointmentView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<BookAppointmentController>(
+            () => BookAppointmentController());
+      }),
+    ),
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),

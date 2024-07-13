@@ -19,7 +19,7 @@ class HomeController extends CommonController {
     {
       "title": AppStrings.doctorAppointmentReminder,
       "image": AppImages.appointmentReminderTab,
-      "page": Routes.HOME,
+      "page": Routes.APPOINTMENT,
     },
   ];
 
