@@ -1,4 +1,3 @@
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 import 'package:medguard/app/helper/all_imports.dart';
 import 'package:shake/shake.dart';
@@ -24,9 +23,18 @@ class HomeController extends CommonController {
     },
   ];
 
+  String post = "";
+
+  void generatePost() async {
+    Map<String, dynamic> apiResult = await fetchPost();
+    post = apiResult["candidates"][0]["content"]["parts"][0]["text"];
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();
+    generatePost();
     ShakeDetector detector = ShakeDetector.autoStart(onPhoneShake: () {
       showHelpDialog(Get.context!);
     });

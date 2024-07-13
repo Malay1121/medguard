@@ -1,4 +1,3 @@
-import 'package:background_fetch/background_fetch.dart';
 import 'package:medguard/app/helper/all_imports.dart';
 
 class SignupController extends CommonController {
@@ -33,7 +32,7 @@ class SignupController extends CommonController {
         "password": generateMd5(passwordController.text),
       };
       await DatabaseHelper.createUser(data: userDetails);
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.SELECT_SYMPTOMS);
       EasyLoading.dismiss();
     }
   }

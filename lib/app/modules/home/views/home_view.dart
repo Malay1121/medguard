@@ -1,3 +1,5 @@
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+
 import '../../../helper/all_imports.dart';
 import '../controllers/home_controller.dart';
 
@@ -46,8 +48,8 @@ class HomeView extends GetView<HomeController> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       for (Map tool in controller.tools)
-                        InkWell(
-                          onTap: () => Get.toNamed(tool["page"]),
+                        GestureDetector(
+                          onTap: () => Get.toNamed(Routes.DISEASE_RESULT),
                           // onTap: () async {
                           // Get.toNamed(Routes.SELECT_SYMPTOMS);
                           // final int helloAlarmID = 0;
@@ -102,6 +104,9 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                     ],
+                  ),
+                  HtmlWidget(
+                    controller.post,
                   ),
                 ],
               ),

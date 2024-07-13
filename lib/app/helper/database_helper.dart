@@ -77,7 +77,7 @@ class DatabaseHelper {
     }
   }
 
-  Future<List> getMedications({String? uid}) async {
+  static Future<List> getMedications({String? uid}) async {
     try {
       uid = uid ?? getStorage.read("userDetails")["uid"];
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
@@ -86,7 +86,11 @@ class DatabaseHelper {
               .doc(uid)
               .collection("medications")
               .get();
-      return querySnapshot.docs;
+      List docs = [];
+      for (var doc in querySnapshot.docs) {
+        docs.add(doc.data());
+      }
+      return docs;
     } on FirebaseException catch (error) {
       showFirebaseError(error.message);
     }

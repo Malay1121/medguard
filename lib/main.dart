@@ -1,4 +1,3 @@
-import 'package:background_fetch/background_fetch.dart';
 import 'package:medguard/app/helper/all_imports.dart';
 
 void onDidReceiveNotificationResponse(
@@ -34,7 +33,6 @@ final InitializationSettings initializationSettings = InitializationSettings(
 void main() async {
   await WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  await AndroidAlarmManager.initialize();
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);

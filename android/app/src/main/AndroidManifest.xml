@@ -47,8 +47,9 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                 <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
-        </receiver>
 
+        </receiver>
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" />
 
 
     </application>
@@ -72,5 +73,6 @@
             <data android:mimeType="vnd.android.cursor.item/event" />
         </intent>
     </queries>
+
 
 </manifest>

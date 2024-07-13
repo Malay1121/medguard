@@ -86,9 +86,11 @@ class AddMedicationController extends CommonController {
   }
 
   void getDates() {
+    print("object");
     int days = endDate.difference(startDate).inDays;
+    print(days);
     for (int day = 0; day <= days; day++) {
-      DateTime date = startDate.add(const Duration(days: 1));
+      DateTime date = startDate.add(Duration(days: day));
 
       if (selectedDays.contains(weekDays[date.weekday])) {
         for (Time time in timings) {
@@ -97,8 +99,22 @@ class AddMedicationController extends CommonController {
           setReminder(date);
         }
       }
-      ;
     }
+    List localTime = [];
+    for (Time time in timings) {
+      DateTime now = DateTime.now();
+      localTime
+          .add(DateTime(now.year, now.month, now.day, time.hour, time.minute));
+    }
+
+    DatabaseHelper.createMedication(data: {
+      "startDate": startDate,
+      "endDate": endDate,
+      "timings": localTime,
+      "name": medicineNameController.text,
+      "description": descriptionController.text,
+    });
+    Get.offAndToNamed(Routes.MEDICINE_REMINDER);
   }
 
   void setReminder(DateTime date) async {

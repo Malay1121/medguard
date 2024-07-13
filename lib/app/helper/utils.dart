@@ -36,6 +36,56 @@ bool isEmptyString(String? string) {
   return false;
 }
 
+Future<Map<String, dynamic>> fetchPost() async {
+  Map<String, dynamic>? userDetails = readUserDetails();
+  Map symptoms = await DatabaseHelper.getSymptoms();
+  Map disease = await DatabaseHelper.getDisease();
+  Map body = {
+    "symptoms": symptoms["symptoms"],
+    "diseases": disease["diseases"],
+    "age": userDetails!["age"],
+    "weight": userDetails["weight"],
+    "height": userDetails["height"],
+    "gender": userDetails["gender"],
+  };
+  String bodyEncoded = json.encode({
+    "system_instruction": {
+      "parts": [
+        {
+          "text": AppStrings.systemPromptPost,
+        }
+      ]
+    },
+    "contents": [
+      {
+        "parts": [
+          {
+            "text":
+                "Generate a post that will help elderly people related to health. Few data o the user: " +
+                    json.encode(body),
+          }
+        ]
+      }
+    ],
+  });
+  print(bodyEncoded);
+  var headers = {'Content-Type': 'application/json'};
+  var request = await http.post(
+    Uri.parse(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKeys["gemini"]}'),
+    headers: headers,
+    body: bodyEncoded,
+  );
+
+  if (request.statusCode == 200) {
+    String response = request.body;
+    return json.decode(response);
+  } else {
+    print(request.statusCode);
+    return {};
+  }
+}
+
 Future<Map<String, dynamic>> fetchDiseases() async {
   Map<String, dynamic>? userDetails = readUserDetails();
   Map symptoms = await DatabaseHelper.getSymptoms();
@@ -69,7 +119,7 @@ Future<Map<String, dynamic>> fetchDiseases() async {
   var headers = {'Content-Type': 'application/json'};
   var request = await http.post(
     Uri.parse(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyBp73DKyzF2KwK2yPNc5lYzO_hkdcgJxyk'),
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKeys["gemini"]}'),
     headers: headers,
     body: bodyEncoded,
   );

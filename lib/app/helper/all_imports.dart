@@ -27,7 +27,6 @@ export 'package:crypto/crypto.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_tts/flutter_tts.dart';
-export 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 
 export 'package:medguard/app/widgets/common_text.dart';
 export 'package:medguard/app/widgets/common_button.dart';

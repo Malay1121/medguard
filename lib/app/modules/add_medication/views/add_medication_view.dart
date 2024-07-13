@@ -50,7 +50,7 @@ class AddMedicationView extends GetView<AddMedicationController> {
                     ),
                     CommonTextField(
                       hintText: AppStrings.medicineName,
-                      // controller: controller.emailController,
+                      controller: controller.medicineNameController,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       prefixIcon: Padding(
@@ -70,7 +70,7 @@ class AddMedicationView extends GetView<AddMedicationController> {
                     CommonTextField(
                       hintText: AppStrings.description,
                       height: null,
-                      // controller: controller.passwordController,
+                      controller: controller.descriptionController,
                       textInputAction: TextInputAction.newline,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,

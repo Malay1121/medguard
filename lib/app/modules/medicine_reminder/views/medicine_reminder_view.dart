@@ -1,3 +1,5 @@
+import 'package:day_night_time_picker/day_night_time_picker.dart';
+
 import '../../../helper/all_imports.dart';
 import '../controllers/medicine_reminder_controller.dart';
 
@@ -60,7 +62,7 @@ class MedicineReminderView extends GetView<MedicineReminderController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 AppText(
-                                  text: reminder["medicine"],
+                                  text: reminder["name"],
                                   style: h3(
                                     context: context,
                                     color: AppColors.midnightBlue,
@@ -80,7 +82,16 @@ class MedicineReminderView extends GetView<MedicineReminderController> {
                             ),
                             Spacer(),
                             AppText(
-                              text: reminder["time"].toString(),
+                              text: formatTime(Time(
+                                      hour:
+                                          (reminder["timings"][0] as Timestamp)
+                                              .toDate()
+                                              .hour,
+                                      minute:
+                                          (reminder["timings"][0] as Timestamp)
+                                              .toDate()
+                                              .minute))
+                                  .toString(),
                               // width: 67.w(context),
                               style: bodySMedium(
                                 context: context,
