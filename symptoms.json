@@ -1,4 +1,5 @@
 {"symptoms":[
+
   {
     "ID": 188,
     "Name": "Abdominal guarding"
@@ -15,6 +16,7 @@
     "ID": 984,
     "Name": "Absence of a pulse"
   },
+
   {
     "ID": 974,
     "Name": "Aggressiveness"

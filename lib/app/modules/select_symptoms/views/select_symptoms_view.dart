@@ -119,7 +119,7 @@ class SelectSymptomsView extends GetView<SelectSymptomsController> {
                   child: Center(
                     child: CommonButton(
                       text: AppStrings.confirm,
-                      onTap: () {},
+                      onTap: () => controller.confirm(),
                     ),
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:medguard/app/helper/all_imports.dart';
 
 class SelectSymptomsController extends GetxController {
   //TODO: Implement SelectSymptomsController
@@ -59,6 +60,13 @@ class SelectSymptomsController extends GetxController {
       print(data);
       update();
     }
+  }
+
+  void confirm() {
+    Get.toNamed(
+      Routes.DISEASE_RESULT,
+      arguments: selectedSymptoms,
+    );
   }
 
   @override

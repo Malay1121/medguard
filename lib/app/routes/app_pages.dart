@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/add_medication/bindings/add_medication_binding.dart';
 import '../modules/add_medication/views/add_medication_view.dart';
+import '../modules/disease_result/bindings/disease_result_binding.dart';
+import '../modules/disease_result/views/disease_result_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/medicine_reminder/bindings/medicine_reminder_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.ADD_MEDICATION,
       page: () => const AddMedicationView(),
       binding: AddMedicationBinding(),
+    ),
+    GetPage(
+      name: _Paths.DISEASE_RESULT,
+      page: () => const DiseaseResultView(),
+      binding: DiseaseResultBinding(),
     ),
   ];
 }

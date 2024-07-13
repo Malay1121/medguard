@@ -38,6 +38,7 @@ class AppStrings {
   static String confirm = "Confirm";
 
   static String selectSymptoms = "Select Symptoms";
+  static String diseasesResult = "Diseases Result";
   static String addMedication = "Add Medication";
   static String medicationReminder = "Medication Reminder";
   static String today = "Today";
@@ -82,4 +83,6 @@ class AppStrings {
   static String whichDays = 'Which Days?';
   static String whatTime = 'What Time?';
   static String addTime = 'Add Time';
+  static String chances = 'Chances are ';
+  static String showDoctor = 'Show doctor ';
 }
