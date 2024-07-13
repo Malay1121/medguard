@@ -63,11 +63,14 @@ class DiseaseResultController extends GetxController {
   }
 
   void init() async {
+    EasyLoading.show();
     if (await DatabaseHelper.diseaseExists()) {
-      DatabaseHelper.getDisease();
+      diseases = await DatabaseHelper.getDisease();
+      update();
     } else {
       Get.offAndToNamed(Routes.SELECT_SYMPTOMS);
     }
+    EasyLoading.dismiss();
   }
 
   @override

@@ -90,7 +90,6 @@ class SelectSymptomsController extends GetxController {
     EasyLoading.dismiss();
     Get.toNamed(
       Routes.DISEASE_RESULT,
-      arguments: selectedSymptoms,
     );
   }
 

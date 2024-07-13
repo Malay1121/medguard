@@ -51,6 +51,7 @@ class AppStrings {
   static String next = "Next";
   static String skip = "Skip";
   static String symptomTracker = 'Symptom Tracker';
+  static String editSymptoms = 'Edit Symptoms';
   static String symptomTrackerDesc =
       'Allows users to log daily symptoms and monitor changes over time.';
   static String appointmentReminders = 'Appointment Reminders';
