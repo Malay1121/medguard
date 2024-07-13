@@ -1,5 +1,6 @@
 import 'package:day_night_time_picker/lib/state/time.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 import 'all_imports.dart';
 
@@ -33,6 +34,53 @@ bool isEmptyString(String? string) {
     return true;
   }
   return false;
+}
+
+Future<Map<String, dynamic>> fetchDiseases() async {
+  Map<String, dynamic>? userDetails = readUserDetails();
+  Map symptoms = await DatabaseHelper.getSymptoms();
+  Map body = {
+    "age": userDetails!["age"],
+    "weight": userDetails["weight"],
+    "height": userDetails["height"],
+    "gender": userDetails["gender"],
+    "symptoms": symptoms["symptoms"],
+  };
+  String bodyEncoded = json.encode({
+    "system_instruction": {
+      "parts": [
+        {
+          "text": AppStrings.systemPrompt,
+        }
+      ]
+    },
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": json.encode(body),
+          }
+        ]
+      }
+    ],
+    "generationConfig": {"response_mime_type": "application/json"}
+  });
+  print(bodyEncoded);
+  var headers = {'Content-Type': 'application/json'};
+  var request = await http.post(
+    Uri.parse(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyBp73DKyzF2KwK2yPNc5lYzO_hkdcgJxyk'),
+    headers: headers,
+    body: bodyEncoded,
+  );
+
+  if (request.statusCode == 200) {
+    String response = request.body;
+    return json.decode(response);
+  } else {
+    print(request.statusCode);
+    return {};
+  }
 }
 
 void writeUserDetails(Map<String, dynamic> data) {

@@ -45,11 +45,17 @@ class SelectSymptomsView extends GetView<SelectSymptomsController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  AppText(
-                                    text: alphabet.toUpperCase(),
-                                    style: h1(
-                                      context: context,
-                                      color: AppColors.midnightBlue,
+                                  GestureDetector(
+                                    onTap: () {
+                                      print(controller.selectedSymptoms);
+                                      controller.update();
+                                    },
+                                    child: AppText(
+                                      text: alphabet.toUpperCase(),
+                                      style: h1(
+                                        context: context,
+                                        color: AppColors.midnightBlue,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -61,7 +67,7 @@ class SelectSymptomsView extends GetView<SelectSymptomsController> {
                                     children: [
                                       for (var symptom
                                           in controller.symptoms[alphabet])
-                                        InkWell(
+                                        GestureDetector(
                                           onTap: () =>
                                               controller.toggleSymptom(symptom),
                                           child: Container(

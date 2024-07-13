@@ -174,7 +174,7 @@ class DatabaseHelper {
     return {};
   }
 
-  static Future<Map> getSymptoms({
+  static Future<Map<String, dynamic>> getSymptoms({
     String? uid,
   }) async {
     try {
@@ -185,7 +185,7 @@ class DatabaseHelper {
           .collection("symptoms")
           .doc("symptoms")
           .get();
-      return documentSnapshot.data() as Map;
+      return documentSnapshot.data() as Map<String, dynamic>;
     } on FirebaseException catch (error) {
       showFirebaseError(error.message);
     }
@@ -220,5 +220,23 @@ class DatabaseHelper {
     } on FirebaseException catch (error) {
       showFirebaseError(error.message);
     }
+  }
+
+  static Future<bool> symptomsExists({
+    String? uid,
+  }) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("symptoms")
+          .doc("symptoms")
+          .get();
+      return documentSnapshot.exists;
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+    return false;
   }
 }

@@ -36,7 +36,7 @@ class SelectSymptomsController extends GetxController {
 
   List selectedSymptoms = [];
 
-  void toggleSymptom(Map symptom) {
+  void toggleSymptom(Map<String, dynamic> symptom) {
     if (symptomSelected(symptom)) {
       selectedSymptoms.remove(symptom);
     } else {
@@ -46,7 +46,9 @@ class SelectSymptomsController extends GetxController {
   }
 
   bool symptomSelected(Map symptom) {
-    return selectedSymptoms.contains(symptom);
+    return (selectedSymptoms
+            .firstWhereOrNull((sy) => symptom["id"] == sy["id"]) !=
+        null);
   }
 
   void getSymptoms() async {
@@ -61,7 +63,31 @@ class SelectSymptomsController extends GetxController {
     }
   }
 
-  void confirm() {
+  void getSelectedSymptoms() async {
+    if (await DatabaseHelper.symptomsExists()) {
+      selectedSymptoms =
+          (await DatabaseHelper.getSymptoms())["symptoms"]?.toList();
+      update();
+    }
+  }
+
+  void confirm() async {
+    EasyLoading.show();
+    if (await DatabaseHelper.symptomsExists()) {
+      await DatabaseHelper.updateSymptoms(data: {"symptoms": selectedSymptoms});
+    } else {
+      await DatabaseHelper.createSymptoms(data: {"symptoms": selectedSymptoms});
+    }
+
+    if (await DatabaseHelper.diseaseExists()) {
+      Map apiResult = await fetchDiseases();
+      Map<String, dynamic> data =
+          jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);
+      await DatabaseHelper.createDisease(data: data);
+    } else {
+      await DatabaseHelper.createDisease(data: await fetchDiseases());
+    }
+    EasyLoading.dismiss();
     Get.toNamed(
       Routes.DISEASE_RESULT,
       arguments: selectedSymptoms,
@@ -77,6 +103,7 @@ class SelectSymptomsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    getSelectedSymptoms();
   }
 
   @override
