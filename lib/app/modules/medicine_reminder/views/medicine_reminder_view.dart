@@ -50,6 +50,17 @@ class MedicineReminderView extends GetView<MedicineReminderController> {
                     //     color: AppColors.grey500,
                     //   ),
                     // ),
+                    if (controller.reminders.isEmpty)
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 350.h(context)),
+                          child: AppText(
+                            text: "Press + to add a medicine",
+                            style:
+                                h3(context: context, color: AppColors.grey600),
+                          ),
+                        ),
+                      ),
                     for (var reminder in controller.reminders)
                       Padding(
                         padding: EdgeInsets.only(

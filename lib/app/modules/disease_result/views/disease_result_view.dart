@@ -76,7 +76,7 @@ class DiseaseResultView extends GetView<DiseaseResultController> {
                               ),
                               controller.progressBar(
                                 context,
-                                double.parse(disease["chance"]),
+                                double.parse(disease["chance"].toString()),
                                 false,
                               ),
                               SizedBox(
@@ -84,7 +84,7 @@ class DiseaseResultView extends GetView<DiseaseResultController> {
                               ),
                               controller.progressBar(
                                 context,
-                                double.parse(disease["show_doctor"]),
+                                double.parse(disease["show_doctor"].toString()),
                                 true,
                               ),
                               SizedBox(

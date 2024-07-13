@@ -36,6 +36,14 @@ bool isEmptyString(String? string) {
   return false;
 }
 
+void configureEasyLoading() {
+  EasyLoading.instance
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..userInteractions = false
+    ..dismissOnTap = false;
+}
+
 Future<Map<String, dynamic>> fetchPost() async {
   Map<String, dynamic>? userDetails = readUserDetails();
   Map symptoms = await DatabaseHelper.getSymptoms();
