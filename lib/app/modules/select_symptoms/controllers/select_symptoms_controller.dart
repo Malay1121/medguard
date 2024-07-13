@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:medguard/app/helper/all_imports.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class SelectSymptomsController extends GetxController {
   //TODO: Implement SelectSymptomsController
@@ -46,8 +48,8 @@ class SelectSymptomsController extends GetxController {
   }
 
   bool symptomSelected(Map symptom) {
-    return (selectedSymptoms
-            .firstWhereOrNull((sy) => symptom["id"] == sy["id"]) !=
+    return (selectedSymptoms.firstWhereOrNull((sy) =>
+            symptom["name"] == sy["name"] || symptom["id"] == sy["id"]) !=
         null);
   }
 
@@ -91,6 +93,38 @@ class SelectSymptomsController extends GetxController {
     Get.toNamed(
       Routes.DISEASE_RESULT,
     );
+  }
+
+  bool listening = false;
+
+  Future<String> getText() async {
+    SpeechToText speechToText = SpeechToText();
+    bool available = await speechToText.initialize(
+      onError: (errorNotification) {
+        listening = false;
+        update();
+        EasyLoading.dismiss();
+      },
+    );
+    if (available) {
+      listening = true;
+      update();
+      SpeechRecognitionResult result = await speechToText.listen();
+      listening = false;
+      update();
+      return result.recognizedWords;
+    }
+    return "";
+  }
+
+  Future getSymptomsFromText() async {
+    EasyLoading.show();
+    Map apiResult = await fetchSymptoms(await getText());
+    Map<String, dynamic> data =
+        jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);
+    selectedSymptoms.addAll(data["symptoms"]);
+    update();
+    EasyLoading.dismiss();
   }
 
   @override

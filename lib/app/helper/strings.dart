@@ -138,7 +138,20 @@ RETURN JUST THE JSON CODE, NOTHING ELSE.
 
 Example Input: "I have cough which keeps me irritated the whole day. Due to it, it gets sometimes hard for me to breath. I also am very likely to be getting sick than others. I feel that I am weak in calcium."
 
-Example Output: {"symptoms": ["cough", "difficulty breathing", "frequent illness", "calcium deficiency"]}
+Example Output: {"symptoms": {
+      "name": "cough",
+      "custom": true // Will stay true no matter what
+    },{
+      "name": "difficulty breathing",
+      "custom": true // Will stay true no matter what
+    },{
+      "name": "frequent illness",
+      "custom": true // Will stay true no matter what
+    },
+    {
+      "name": "calcium deficiency",
+      "custom": true // Will stay true no matter what
+    }}
 
 You can refer to this list of symptoms(Just don't stick to it, you can add more":
 {"symptoms":[
@@ -1314,6 +1327,10 @@ You can refer to this list of symptoms(Just don't stick to it, you can add more"
   static String dontHaveAnAccountYet = 'Don’t have an account yet?';
   static String signUp = 'Sign up';
   static String hopeYoureDoingFine = 'Hope you’re doing fine.';
+
+  static String recordSymptoms =
+      'Press the record button and speak about the symptoms/issues you face!';
+  static String autofillSymptoms = "Autofill Symptoms";
 
   static String options = "Options";
   static String seeAll = "See All";
