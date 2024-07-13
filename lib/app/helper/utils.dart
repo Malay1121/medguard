@@ -99,7 +99,7 @@ Future<Map<String, dynamic>> fetchSymptoms(String text) async {
     "system_instruction": {
       "parts": [
         {
-          "text": AppStrings.systemPromptPost,
+          "text": AppStrings.systemPromptFindSymptoms,
         }
       ]
     },
@@ -112,6 +112,7 @@ Future<Map<String, dynamic>> fetchSymptoms(String text) async {
         ]
       }
     ],
+    "generationConfig": {"response_mime_type": "application/json"}
   });
   print(bodyEncoded);
   var headers = {'Content-Type': 'application/json'};

@@ -96,30 +96,41 @@ class SelectSymptomsController extends GetxController {
   }
 
   bool listening = false;
+  SpeechToText speechToText = SpeechToText();
+  bool speechEnabled = false;
 
-  Future<String> getText() async {
-    SpeechToText speechToText = SpeechToText();
-    bool available = await speechToText.initialize(
+  void initializeSpeech() async {
+    speechEnabled = await speechToText.initialize(
       onError: (errorNotification) {
         listening = false;
         update();
         EasyLoading.dismiss();
       },
     );
-    if (available) {
-      listening = true;
-      update();
-      SpeechRecognitionResult result = await speechToText.listen();
-      listening = false;
-      update();
-      return result.recognizedWords;
-    }
-    return "";
   }
 
-  Future getSymptomsFromText() async {
+  Future<String> getText() async {
+    String result = "";
+    listening = true;
+    update();
+
+    SpeechRecognitionResult r = await speechToText.listen(
+        listenOptions: SpeechListenOptions(listenMode: ListenMode.dictation),
+        partialResults: false,
+        onResult: (res) {
+          result = res.recognizedWords;
+          listening = false;
+          update();
+          getSymptomsFromText(result);
+        });
+
+    return result;
+  }
+
+  Future getSymptomsFromText(String text) async {
     EasyLoading.show();
-    Map apiResult = await fetchSymptoms(await getText());
+    print(text);
+    Map apiResult = await fetchSymptoms(text);
     Map<String, dynamic> data =
         jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);
     selectedSymptoms.addAll(data["symptoms"]);
@@ -130,6 +141,7 @@ class SelectSymptomsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    initializeSpeech();
     getSymptoms();
   }
 

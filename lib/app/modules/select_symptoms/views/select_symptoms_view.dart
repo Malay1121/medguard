@@ -68,66 +68,72 @@ class SelectSymptomsView extends GetView<SelectSymptomsController> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Wrap(
-                                    children: [
-                                      if (controller.selectedSymptoms
-                                          .where(
-                                            (e) => e["custom"] == true,
-                                          )
-                                          .isEmpty)
-                                        AppText(
-                                          text: AppStrings.recordSymptoms,
-                                          maxLines: null,
-                                          width: 250.w(context),
-                                          style: bodySSemiBold(
-                                            context: context,
-                                            color: AppColors.grey400,
-                                          ),
-                                        ),
-                                      for (var symptom
-                                          in controller.selectedSymptoms.where(
-                                        (e) => e["custom"] == true,
-                                      ))
-                                        GestureDetector(
-                                          onTap: () =>
-                                              controller.toggleSymptom(symptom),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: controller
-                                                      .symptomSelected(symptom)
-                                                  ? AppColors.midnightBlue
-                                                  : AppColors.grey50,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
+                                  SizedBox(
+                                    width: 270.w(context),
+                                    child: Wrap(
+                                      runSpacing: 10.h(context),
+                                      spacing: 10.w(context),
+                                      children: [
+                                        if (controller.selectedSymptoms
+                                            .where(
+                                              (e) => e["custom"] == true,
+                                            )
+                                            .isEmpty)
+                                          AppText(
+                                            text: AppStrings.recordSymptoms,
+                                            maxLines: null,
+                                            width: 250.w(context),
+                                            style: bodySSemiBold(
+                                              context: context,
+                                              color: AppColors.grey400,
                                             ),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                vertical: 10.h(context),
-                                                horizontal: 10.w(context),
+                                          ),
+                                        for (var symptom in controller
+                                            .selectedSymptoms
+                                            .where(
+                                          (e) => e["custom"] == true,
+                                        ))
+                                          GestureDetector(
+                                            onTap: () => controller
+                                                .toggleSymptom(symptom),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    controller.symptomSelected(
+                                                            symptom)
+                                                        ? AppColors.midnightBlue
+                                                        : AppColors.grey50,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
-                                              child: AppText(
-                                                text: symptom["name"],
-                                                height: 21.h(context),
-                                                style: bodySSemiBold(
-                                                  context: context,
-                                                  color: controller
-                                                          .symptomSelected(
-                                                              symptom)
-                                                      ? AppColors.white
-                                                      : AppColors.grey500,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical: 10.h(context),
+                                                  horizontal: 10.w(context),
+                                                ),
+                                                child: AppText(
+                                                  text: symptom["name"],
+                                                  height: 21.h(context),
+                                                  style: bodySSemiBold(
+                                                    context: context,
+                                                    color: controller
+                                                            .symptomSelected(
+                                                                symptom)
+                                                        ? AppColors.white
+                                                        : AppColors.grey500,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                    ],
+                                          )
+                                      ],
+                                    ),
                                   ),
                                   GestureDetector(
                                     onTap: () async {
                                       if (!controller.listening) {
                                         try {
-                                          await controller
-                                              .getSymptomsFromText();
+                                          await controller.getText();
                                         } catch (e) {
                                           controller.listening = false;
                                           controller.update();
