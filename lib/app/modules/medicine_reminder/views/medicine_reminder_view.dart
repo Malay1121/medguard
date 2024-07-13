@@ -98,6 +98,19 @@ class MedicineReminderView extends GetView<MedicineReminderController> {
                                 color: AppColors.grey600,
                               ),
                             ),
+                            SizedBox(
+                              width: 16.w(context),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                DatabaseHelper.deleteMedication(data: reminder);
+                              },
+                              child: Icon(
+                                Icons.delete_outline,
+                                color: AppColors.deepPink,
+                                size: 22.t(context),
+                              ),
+                            ),
                           ],
                         ),
                       ),

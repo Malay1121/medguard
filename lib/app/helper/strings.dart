@@ -176,7 +176,7 @@ After generating: Convert the code to Inline CSS''';
   static String signUp = 'Sign up';
   static String hopeYoureDoingFine = 'Hope you’re doing fine.';
 
-  static String categories = "Categories";
+  static String options = "Options";
   static String seeAll = "See All";
   static String symptoms = "Symptoms";
   static String medicineReminder = "Medicine Reminder";

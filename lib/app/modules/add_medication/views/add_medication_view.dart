@@ -105,13 +105,17 @@ class AddMedicationView extends GetView<AddMedicationController> {
                               height: 10.h(context),
                             ),
                             InkWell(
-                              onTap: () {
-                                DatePickerDialog(
+                              onTap: () async {
+                                DateTime? picked = await showDatePicker(
+                                  context: context,
                                   firstDate: DateTime.now(),
                                   lastDate: DateTime.now().add(
-                                    const Duration(days: 365),
+                                    Duration(days: 365),
                                   ),
                                 );
+                                controller.startDate =
+                                    picked ?? controller.startDate;
+                                controller.update();
                               },
                               child: Container(
                                 width: 159.w(context),
@@ -156,13 +160,17 @@ class AddMedicationView extends GetView<AddMedicationController> {
                               height: 10.h(context),
                             ),
                             InkWell(
-                              onTap: () {
-                                DatePickerDialog(
+                              onTap: () async {
+                                DateTime? picked = await showDatePicker(
+                                  context: context,
                                   firstDate: DateTime.now(),
                                   lastDate: DateTime.now().add(
-                                    const Duration(days: 365),
+                                    Duration(days: 365),
                                   ),
                                 );
+                                controller.endDate =
+                                    picked ?? controller.endDate;
+                                controller.update();
                               },
                               child: Container(
                                 width: 159.w(context),

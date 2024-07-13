@@ -112,6 +112,21 @@ class DatabaseHelper {
     }
   }
 
+  static Future deleteMedication(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("medications")
+          .doc(data["id"])
+          .delete();
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
   static Future<bool> diseaseExists({
     String? uid,
   }) async {

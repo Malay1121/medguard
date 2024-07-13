@@ -113,6 +113,8 @@ class AddMedicationController extends CommonController {
       "timings": localTime,
       "name": medicineNameController.text,
       "description": descriptionController.text,
+      "id":
+          startDate.year * 10000 + startDate.month * 1000 + startDate.day * 100,
     });
     Get.offAndToNamed(Routes.MEDICINE_REMINDER);
   }

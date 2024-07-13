@@ -8,37 +8,26 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      return Scaffold(
-        backgroundColor: AppColors.white,
-        body: SingleChildScrollView(
-          child: Center(
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.white,
+          body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 24.w(context),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: 16.h(context),
                   ),
-                  Row(
-                    children: [
-                      AppText(
-                        text: AppStrings.categories,
-                        style: h3(
-                          context: context,
-                          color: AppColors.midnightBlue,
-                        ),
-                      ),
-                      const Spacer(),
-                      AppText(
-                        text: AppStrings.seeAll,
-                        style: bodySMedium(
-                          context: context,
-                          color: AppColors.grey500,
-                        ),
-                      ),
-                    ],
+                  AppText(
+                    text: AppStrings.options,
+                    style: h3(
+                      context: context,
+                      color: AppColors.midnightBlue,
+                    ),
                   ),
                   SizedBox(
                     height: 16.h(context),
@@ -49,7 +38,7 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       for (Map tool in controller.tools)
                         GestureDetector(
-                          onTap: () => Get.toNamed(Routes.DISEASE_RESULT),
+                          onTap: () => Get.toNamed(tool["page"]),
                           // onTap: () async {
                           // Get.toNamed(Routes.SELECT_SYMPTOMS);
                           // final int helloAlarmID = 0;
@@ -104,6 +93,9 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 14.h(context),
                   ),
                   HtmlWidget(
                     controller.post,
