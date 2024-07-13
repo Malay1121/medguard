@@ -20,6 +20,7 @@ class SplashController extends CommonController {
   void onInit() {
     super.onInit();
     checkLogin();
+    DatabaseHelper.getApis();
     Future.delayed(
       const Duration(seconds: 3),
       () {

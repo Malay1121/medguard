@@ -2,6 +2,18 @@ import 'package:medguard/app/helper/all_imports.dart';
 import 'package:medguard/app/helper/utils.dart';
 
 class DatabaseHelper {
+  static Future getApis() async {
+    try {
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection("api_key")
+          .doc("api_key")
+          .get();
+      apiKeys = documentSnapshot.data() as Map;
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
   static Future createUser({required Map<String, dynamic> data}) async {
     try {
       UserCredential user = await FirebaseAuth.instance
@@ -65,6 +77,22 @@ class DatabaseHelper {
     }
   }
 
+  Future<List> getMedications({String? uid}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance
+              .collection("users")
+              .doc(uid)
+              .collection("medications")
+              .get();
+      return querySnapshot.docs;
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+    return [];
+  }
+
   static Future editMedication(
       {String? uid, required Map<String, dynamic> data}) async {
     try {
@@ -75,6 +103,120 @@ class DatabaseHelper {
           .collection("medications")
           .doc(data["id"])
           .update(data);
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
+  static Future<bool> diseaseExists({
+    String? uid,
+  }) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("disease")
+          .doc("disease")
+          .get();
+      return documentSnapshot.exists;
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+    return false;
+  }
+
+  static Future createDisease(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("disease")
+          .doc("disease")
+          .set(data);
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
+  static Future updateDisease(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("disease")
+          .doc("disease")
+          .update(data);
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
+  static Future<Map> getDisease({
+    String? uid,
+  }) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("disease")
+          .doc("disease")
+          .get();
+      return documentSnapshot.data() as Map;
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+    return {};
+  }
+
+  static Future<Map> getSymptoms({
+    String? uid,
+  }) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("symptoms")
+          .doc("symptoms")
+          .get();
+      return documentSnapshot.data() as Map;
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+    return {};
+  }
+
+  static Future updateSymptoms(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("symptoms")
+          .doc("symptoms")
+          .update(data);
+    } on FirebaseException catch (error) {
+      showFirebaseError(error.message);
+    }
+  }
+
+  static Future createSymptoms(
+      {String? uid, required Map<String, dynamic> data}) async {
+    try {
+      uid = uid ?? getStorage.read("userDetails")["uid"];
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .collection("symptoms")
+          .doc("symptoms")
+          .set(data);
     } on FirebaseException catch (error) {
       showFirebaseError(error.message);
     }

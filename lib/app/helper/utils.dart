@@ -5,6 +5,10 @@ import 'all_imports.dart';
 
 GetStorage getStorage = GetStorage();
 
+Map apiKeys = {
+  "gemini": "AIzaSyBp73DKyzF2KwK2yPNc5lYzO_hkdcgJxyk",
+};
+
 String generateMd5(String input) {
   return md5.convert(utf8.encode(input)).toString();
 }

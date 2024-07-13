@@ -62,6 +62,14 @@ class DiseaseResultController extends GetxController {
     );
   }
 
+  void init() async {
+    if (await DatabaseHelper.diseaseExists()) {
+      DatabaseHelper.getDisease();
+    } else {
+      Get.offAndToNamed(Routes.SELECT_SYMPTOMS);
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -70,6 +78,7 @@ class DiseaseResultController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    init();
   }
 
   @override
