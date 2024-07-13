@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:medguard/app/helper/all_imports.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class SelectSymptomsController extends GetxController {
   //TODO: Implement SelectSymptomsController
@@ -46,8 +48,8 @@ class SelectSymptomsController extends GetxController {
   }
 
   bool symptomSelected(Map symptom) {
-    return (selectedSymptoms
-            .firstWhereOrNull((sy) => symptom["id"] == sy["id"]) !=
+    return (selectedSymptoms.firstWhereOrNull((sy) =>
+            symptom["name"] == sy["name"] || symptom["id"] == sy["id"]) !=
         null);
   }
 
@@ -93,9 +95,53 @@ class SelectSymptomsController extends GetxController {
     );
   }
 
+  bool listening = false;
+  SpeechToText speechToText = SpeechToText();
+  bool speechEnabled = false;
+
+  void initializeSpeech() async {
+    speechEnabled = await speechToText.initialize(
+      onError: (errorNotification) {
+        listening = false;
+        update();
+        EasyLoading.dismiss();
+      },
+    );
+  }
+
+  Future<String> getText() async {
+    String result = "";
+    listening = true;
+    update();
+
+    SpeechRecognitionResult r = await speechToText.listen(
+        listenOptions: SpeechListenOptions(listenMode: ListenMode.dictation),
+        partialResults: false,
+        onResult: (res) {
+          result = res.recognizedWords;
+          listening = false;
+          update();
+          getSymptomsFromText(result);
+        });
+
+    return result;
+  }
+
+  Future getSymptomsFromText(String text) async {
+    EasyLoading.show();
+    print(text);
+    Map apiResult = await fetchSymptoms(text);
+    Map<String, dynamic> data =
+        jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);
+    selectedSymptoms.addAll(data["symptoms"]);
+    update();
+    EasyLoading.dismiss();
+  }
+
   @override
   void onInit() {
     super.onInit();
+    initializeSpeech();
     getSymptoms();
   }
 
