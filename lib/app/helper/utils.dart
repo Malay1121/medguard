@@ -69,8 +69,45 @@ Future<Map<String, dynamic>> fetchPost() async {
         "parts": [
           {
             "text":
-                "Generate a post that will help elderly people related to health. Few data o the user: " +
+                "Generate a post that will help elderly people related to health. Few data of the user: " +
                     json.encode(body),
+          }
+        ]
+      }
+    ],
+  });
+  print(bodyEncoded);
+  var headers = {'Content-Type': 'application/json'};
+  var request = await http.post(
+    Uri.parse(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKeys["gemini"]}'),
+    headers: headers,
+    body: bodyEncoded,
+  );
+
+  if (request.statusCode == 200) {
+    String response = request.body;
+    return json.decode(response);
+  } else {
+    print(request.statusCode);
+    return {};
+  }
+}
+
+Future<Map<String, dynamic>> fetchSymptoms(String text) async {
+  String bodyEncoded = json.encode({
+    "system_instruction": {
+      "parts": [
+        {
+          "text": AppStrings.systemPromptPost,
+        }
+      ]
+    },
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": text,
           }
         ]
       }
