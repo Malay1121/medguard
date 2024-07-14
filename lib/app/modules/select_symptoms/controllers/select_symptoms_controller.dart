@@ -73,6 +73,12 @@ class SelectSymptomsController extends GetxController {
     }
   }
 
+  void speak() {
+    if (!listening) {
+      getText();
+    }
+  }
+
   void confirm() async {
     EasyLoading.show();
     if (await DatabaseHelper.symptomsExists()) {
@@ -90,7 +96,7 @@ class SelectSymptomsController extends GetxController {
       await DatabaseHelper.createDisease(data: await fetchDiseases());
     }
     EasyLoading.dismiss();
-    Get.toNamed(
+    Get.offAndToNamed(
       Routes.DISEASE_RESULT,
     );
   }
@@ -100,13 +106,13 @@ class SelectSymptomsController extends GetxController {
   bool speechEnabled = false;
 
   void initializeSpeech() async {
-    speechEnabled = await speechToText.initialize(
-      onError: (errorNotification) {
-        listening = false;
-        update();
-        EasyLoading.dismiss();
-      },
-    );
+    speechEnabled = await speechToText.initialize(onError: (errorNotification) {
+      listening = false;
+      update();
+      EasyLoading.dismiss();
+    }, onStatus: (status) {
+      if (status == "done") {}
+    });
   }
 
   Future<String> getText() async {
