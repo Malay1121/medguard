@@ -26,7 +26,7 @@ class CommonController extends GetxController {
 
   @override
   void onInit() {
-    print('loll');
+    // print('loll');
     // checkInternetConnection();
 
     super.onInit();

@@ -3,9 +3,7 @@ import 'package:medguard/app/helper/all_imports.dart';
 void onDidReceiveNotificationResponse(
     NotificationResponse notificationResponse) async {
   final String? payload = notificationResponse.payload;
-  if (notificationResponse.payload != null) {
-    debugPrint('notification payload: $payload');
-  }
+  if (notificationResponse.payload != null) {}
   await Get.toNamed(Routes.ONBOARDING);
 }
 
@@ -16,15 +14,7 @@ const AndroidInitializationSettings initializationSettingsAndroid =
     AndroidInitializationSettings('@mipmap/ic_launcher');
 final DarwinInitializationSettings initializationSettingsDarwin =
     DarwinInitializationSettings(
-  onDidReceiveLocalNotification: (id, title, body, payload) {
-    print(id.toString() +
-        " " +
-        title.toString() +
-        "" +
-        body.toString() +
-        "" +
-        payload.toString());
-  },
+  onDidReceiveLocalNotification: (id, title, body, payload) {},
 );
 final InitializationSettings initializationSettings = InitializationSettings(
   android: initializationSettingsAndroid,

@@ -97,9 +97,12 @@ class SelectSymptomsController extends GetxController {
       Map apiResult = await fetchDiseases();
       Map<String, dynamic> data =
           jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);
-      await DatabaseHelper.createDisease(data: data);
+      await DatabaseHelper.updateDisease(data: data);
     } else {
-      await DatabaseHelper.createDisease(data: await fetchDiseases());
+      Map apiResult = await fetchDiseases();
+      Map<String, dynamic> data =
+          jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);
+      await DatabaseHelper.createDisease(data: data);
     }
     EasyLoading.dismiss();
     Get.offAndToNamed(
@@ -141,7 +144,7 @@ class SelectSymptomsController extends GetxController {
 
   Future getSymptomsFromText(String text) async {
     EasyLoading.show();
-    print(text);
+    // print(text);
     Map apiResult = await fetchSymptoms(text);
     Map<String, dynamic> data =
         jsonDecode(apiResult["candidates"][0]["content"]["parts"][0]["text"]);

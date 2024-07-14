@@ -77,7 +77,7 @@ Future<Map<String, dynamic>> fetchPost() async {
       }
     ],
   });
-  print(bodyEncoded);
+  // print(bodyEncoded);
   var headers = {'Content-Type': 'application/json'};
   var request = await http.post(
     Uri.parse(
@@ -90,7 +90,7 @@ Future<Map<String, dynamic>> fetchPost() async {
     String response = request.body;
     return json.decode(response);
   } else {
-    print(request.statusCode);
+    // print(request.statusCode);
     return {};
   }
 }
@@ -115,7 +115,7 @@ Future<Map<String, dynamic>> fetchSymptoms(String text) async {
     ],
     "generationConfig": {"response_mime_type": "application/json"}
   });
-  print(bodyEncoded);
+  // print(bodyEncoded);
   var headers = {'Content-Type': 'application/json'};
   var request = await http.post(
     Uri.parse(
@@ -128,7 +128,7 @@ Future<Map<String, dynamic>> fetchSymptoms(String text) async {
     String response = request.body;
     return json.decode(response);
   } else {
-    print(request.statusCode);
+    // print(request.statusCode);
     return {};
   }
 }
@@ -162,7 +162,7 @@ Future<Map<String, dynamic>> fetchDiseases() async {
     ],
     "generationConfig": {"response_mime_type": "application/json"}
   });
-  print(bodyEncoded);
+  // print(bodyEncoded);
   var headers = {'Content-Type': 'application/json'};
   var request = await http.post(
     Uri.parse(
@@ -175,15 +175,15 @@ Future<Map<String, dynamic>> fetchDiseases() async {
     String response = request.body;
     return json.decode(response);
   } else {
-    print(request.statusCode);
+    // print(request.statusCode);
     return {};
   }
 }
 
 void writeUserDetails(Map<String, dynamic> data) {
-  print(data);
+  // print(data);
   getStorage.write("userDetails", data);
-  print(readUserDetails());
+  // print(readUserDetails());
 }
 
 Map<String, dynamic>? readUserDetails() {
@@ -354,8 +354,8 @@ void showHelpDialog(BuildContext context) {
 }
 
 String getMessageFromErrorCode(e) {
-  print(e.code);
-  print(e.message);
+  // print(e.code);
+  // print(e.message);
   switch (e.code) {
     case "ERROR_EMAIL_ALREADY_IN_USE":
     case "account-exists-with-different-credential":

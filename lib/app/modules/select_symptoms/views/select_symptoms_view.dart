@@ -171,7 +171,7 @@ class SelectSymptomsView extends GetView<SelectSymptomsController> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      print(controller.selectedSymptoms);
+                                      // print(controller.selectedSymptoms);
                                       controller.update();
                                     },
                                     child: AppText(

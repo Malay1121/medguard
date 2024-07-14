@@ -86,9 +86,9 @@ class AddMedicationController extends CommonController {
   }
 
   void getDates() async {
-    print("object");
+    // print("object");
     int days = endDate.difference(startDate).inDays;
-    print(days);
+    // print(days);
     for (int day = 0; day <= days; day++) {
       DateTime date = startDate.add(Duration(days: day));
 
