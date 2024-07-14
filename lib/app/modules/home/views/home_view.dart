@@ -92,6 +92,18 @@ class HomeView extends GetView<HomeController> {
                             ],
                           ),
                         ),
+                      GestureDetector(
+                        onTap: () => showHelpDialog(context),
+                        child: AppText(
+                          text: "SOS",
+                          width: 100.w(context),
+                          textAlign: TextAlign.center,
+                          style: bodyXSBold(
+                            context: context,
+                            color: AppColors.grey600,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
