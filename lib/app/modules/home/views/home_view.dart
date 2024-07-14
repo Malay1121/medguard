@@ -20,17 +20,17 @@ class HomeView extends GetView<HomeController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 16.h(context),
+                    height: 24.h(context),
                   ),
                   AppText(
                     text: AppStrings.options,
-                    style: h3(
+                    style: h2(
                       context: context,
                       color: AppColors.midnightBlue,
                     ),
                   ),
                   SizedBox(
-                    height: 16.h(context),
+                    height: 24.h(context),
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,11 +95,17 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   SizedBox(
-                    height: 14.h(context),
+                    height: 24.h(context),
                   ),
-                  HtmlWidget(
-                    controller.post,
-                  ),
+                  controller.post == "" || controller.post == null
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.midnightBlue,
+                          ),
+                        )
+                      : HtmlWidget(
+                          controller.post,
+                        ),
                 ],
               ),
             ),

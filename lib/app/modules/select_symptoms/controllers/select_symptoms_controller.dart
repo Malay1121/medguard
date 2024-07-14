@@ -42,8 +42,10 @@ class SelectSymptomsController extends GetxController {
     EasyLoading.show();
 
     if (symptomSelected(symptom)) {
-      selectedSymptoms.removeWhere(
-          (sy) => symptom["name"] == sy["name"] || symptom["id"] == sy["id"]);
+      selectedSymptoms.removeWhere((sy) =>
+          symptom["name"] == sy["name"] ||
+          ((symptom["id"] != null || sy["id"] != null) &&
+              symptom["id"] == sy["id"]));
     } else {
       selectedSymptoms.add(symptom);
     }

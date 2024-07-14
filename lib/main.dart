@@ -64,6 +64,7 @@ void main() async {
     GetMaterialApp(
       title: "MedGuard",
       builder: EasyLoading.init(),
+      showSemanticsDebugger: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
