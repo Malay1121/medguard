@@ -81,7 +81,7 @@ class HomeView extends GetView<HomeController> {
                               ),
                               AppText(
                                 text: tool["title"],
-                                width: 100.w(context),
+                                width: 85.5.w(context),
                                 textAlign: TextAlign.center,
                                 maxLines: null,
                                 style: bodyXSBold(
@@ -94,13 +94,23 @@ class HomeView extends GetView<HomeController> {
                         ),
                       GestureDetector(
                         onTap: () => showHelpDialog(context),
-                        child: AppText(
-                          text: "SOS",
-                          width: 100.w(context),
-                          textAlign: TextAlign.center,
-                          style: bodyXSBold(
-                            context: context,
-                            color: AppColors.grey600,
+                        child: Container(
+                          width: 55.w(context),
+                          height: 55.w(context),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.darkRed,
+                          ),
+                          child: Center(
+                            child: AppText(
+                              text: "SoS",
+                              // width: 85.5.w(context),
+                              textAlign: TextAlign.center,
+                              style: bodyXSBold(
+                                context: context,
+                                color: AppColors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
