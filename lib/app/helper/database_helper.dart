@@ -70,7 +70,7 @@ class DatabaseHelper {
           .collection("users")
           .doc(uid)
           .collection("medications")
-          .doc(data["id"])
+          .doc(data["id"].toString())
           .set(data);
     } on FirebaseException catch (error) {
       showFirebaseError(error.message);

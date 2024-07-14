@@ -39,12 +39,16 @@ class SelectSymptomsController extends GetxController {
   List selectedSymptoms = [];
 
   void toggleSymptom(Map<String, dynamic> symptom) {
+    EasyLoading.show();
+
     if (symptomSelected(symptom)) {
-      selectedSymptoms.remove(symptom);
+      selectedSymptoms.removeWhere(
+          (sy) => symptom["name"] == sy["name"] || symptom["id"] == sy["id"]);
     } else {
       selectedSymptoms.add(symptom);
     }
     update();
+    EasyLoading.dismiss();
   }
 
   bool symptomSelected(Map symptom) {

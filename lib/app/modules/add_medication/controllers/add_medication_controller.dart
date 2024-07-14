@@ -85,7 +85,7 @@ class AddMedicationController extends CommonController {
     );
   }
 
-  void getDates() {
+  void getDates() async {
     print("object");
     int days = endDate.difference(startDate).inDays;
     print(days);
@@ -96,7 +96,9 @@ class AddMedicationController extends CommonController {
         for (Time time in timings) {
           date =
               DateTime(date.year, date.month, date.day, time.hour, time.minute);
-          setReminder(date);
+          if (date.isAfter(DateTime.now())) {
+            setReminder(date);
+          }
         }
       }
     }
@@ -107,7 +109,7 @@ class AddMedicationController extends CommonController {
           .add(DateTime(now.year, now.month, now.day, time.hour, time.minute));
     }
 
-    DatabaseHelper.createMedication(data: {
+    await DatabaseHelper.createMedication(data: {
       "startDate": startDate,
       "endDate": endDate,
       "timings": localTime,

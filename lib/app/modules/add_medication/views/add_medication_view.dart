@@ -319,7 +319,7 @@ class AddMedicationView extends GetView<AddMedicationController> {
                       height: 24.h(context),
                     ),
                     CommonButton(
-                      text: AppStrings.createAccount,
+                      text: AppStrings.confirm,
                       width: 342.w(context),
                       onTap: () => controller.getDates(),
                     ),
