@@ -1,3 +1,5 @@
+## This project won first place(<18) in the MediHacks 2024 Hackathon.
+
 # medguard
 
 ## Inspiration
